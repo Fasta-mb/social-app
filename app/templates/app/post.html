@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% block content %}
+<section class="container-fluids d-flex justify-content-center">
+    <div class="post container-register">
+        <img src="{% static 'auths/images/Logo.png' %}" alt="Logo" />
+        <h2>Post your unique <span>ideas</span></h2>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="">{{post.image.label}}:</label>
+            {{post.image}}
+
+            <label for="">{{post.title.label}}:</label>
+            {{post.title}}
+
+            <label for="">{{post.description.label}}:</label>
+            {{post.description}}
+
+            <button type="submit" class="btn btn-outline-danger">Submit</button>
+
+        </form>
+       
+    </div>
+
+</section>
+{% endblock content %}

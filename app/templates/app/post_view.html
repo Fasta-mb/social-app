@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<section class="container-fluids d-flex justify-content-center">
+    <div class="post-view container-register">
+        <div class="">
+            <img class="rounded" src="{{view.image.url}}" alt="" style="width:35em;max-height:45em;" />
+        </div>
+       <div class="d-flex flex-column align-items-start" style="margin-left: 30px">
+            <div class="mt-2 mb-3">
+                <p class="fs-5" style="font-size:50px">Uploaded by 
+                    <span class="me-4 fw-bold">{{view.author | title}}</span> 
+                </p>
+            </div>
+            <div class="d-flex align-items-center">
+                <img class="rounded-circle" src="{{view.picuser.image.url}}" alt="" style="width: 67px;margin-right: 20px;"/>
+                <div class="d-flex flex-column mt-3">
+                    <h3 class="fs-5">{{view.author}}</h3>
+                    <p>200 followers</p>
+                </div>
+                <button class="btn btn-danger rounded-pill" style="margin-left: 3.4em;" type="submit">Follow</button>
+            </div>
+        
+        <h2 style="font-size:30px;margin-top:20px">{{view.title}}</h2>
+        <p class="text-start">{{view.description}}</p>
+
+        <h2 class="" style="font-size:32px;margin-top:2em;">{{comment_count}} Comment{{comment_count | pluralize}}</h2>
+        <div class="d-flex flex-column justify-content-start align-items-start mt-3 view-comment">
+            {% for coment in comments %}
+            <div class="d-flex align-items-center justify-content-start">
+                <img class="rounded-circle" src="{{coment.pic.image.url}}" alt="" style="width:40px;margin-right:20px;"/>
+                <h4 class="fs-5 fw-bold mt-1">{{coment.author}}<span class="fw-normal fs-6 mx-4 text-muted"> {{coment.created | timesince}} ago</span></h4>
+                {% if user.username == coment.author.username %}
+                <a href="{% url 'edit-comment' coment.id %}" ><img class="imgd" src="{% static 'auths/images/edit.png' %}" /></a>
+                <a href="{% url 'delete-comment' coment.id %}" ><img class="imgd" src="{% static 'auths/images/delete.png' %}" /></a>
+                {% endif %}
+            </div>
+            <p class="mt-2 text-start">{{coment.body}}</p>
+            {% empty %}
+            <p style="font-size:1.4em;" class="">Write your first comment</p>
+            {% endfor %}
+        </div>
+            {% comment %} {% if user.is_authenticated %} {% endcomment %}
+            <form method="POST" class="view-post">
+                {% csrf_token %}
+                {{comment}}
+                <button type="submit" class="btn btn-danger">Comment</button>
+            </form>
+            {% comment %} {% else %}
+            login to comment
+            {% endif %} {% endcomment %}
+
+            <form method="POST" class="view-post">
+                {% csrf_token %}
+                {{editC}}
+            </form>
+
+
+       </div>
+            
+       
+    </div>
+
+</section>
+
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<section class="container-fluids d-flex justify-content-center">
+    <div class="container-register">
+        <img src="{% static 'auths/images/Logo.png' %}" alt="Logo" />
+        <h2>Create a Personal <span>account</span></h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="">{{form.username.label}}:</label>
+            {{form.username}}
+
+            <label for="">{{form.password1.label}}:</label>
+            {{form.password1}}
+
+            <label for="">{{form.password2.label}}:</label>
+            {{form.password2}}
+
+            {% if form.errors %}
+            <p>{{form.error_messages.password_mismatch}}</p>
+            {% endif %}
+
+            <button type="submit" class="btn btn-outline-danger">Register</button>
+
+        </form>
+        <p>Already a member, <a href="{% url 'login' %}" class="link-secondary text-decoration-none">Login</a></p>
+    </div>
+
+</section>
+{% endblock content %}

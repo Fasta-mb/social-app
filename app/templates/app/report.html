@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <section class="container-fluids d-flex justify-content-center">
+        <div class="container-register">
+            <h2>Please send your <span>Report</span></h2>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{report}}
+                <button type="submit" class="btn btn-outline-danger">Register</button>
+    
+            </form>
+
+        </div>
+    
+    </section>
+
+{% endblock content %}

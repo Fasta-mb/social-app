@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<section class="container-fluids d-flex justify-content-center">
+    <div class="container-register delete--acc">
+        <p class="fs-5 mt-5">
+            Are you sure you want to delete the account? you will lose all of your data
+        </p>
+
+        <div class="d-flex justify-content-center">
+        <a href="{% url 'conf-delete-account' %}" class="btn btn-danger mx-3">Confirm</a>
+        <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Go Back</a>
+        </div>
+
+    </div>
+
+</section>
+{% endblock content %}

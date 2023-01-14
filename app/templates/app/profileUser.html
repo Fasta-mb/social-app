@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+     <div class="profile">
+        {% for field in profile %}
+        {% if field.image.url is not None %}
+        <img src="{{field.image.url}}" style="width:10rem;"/>
+        {% else %}
+        <img src="{% static 'auths/images/avatar.png' %}" />
+        {% endif %}
+        <h3>{{field.user | title}}</h3>
+        <span class="text-secondary w-5">@{{field.user | title}}</span>
+        <p>{{field.description}}</p>
+        <div>
+            <a href="{% url 'profile-user-edit' %}" class="btn btn-outline-success">Edit profile</a>
+        </div>
+        {% endfor %}
+     </div>  
+
+     {% comment %} ALL POST BELLOW PROFILE {% endcomment %}
+     <h3 class="text-center mt-5 ideas">My Ideas</h3>
+     <div class="container-home">
+        {% for post in posts %}
+        <div class="user-a">
+            <a href="#" >
+            <img class="post-img" src="{{post.image.url}}" alt="{{post.title}}" />
+            </a>
+            
+            <a href="#">
+                <div class="user-u">
+                    <img class="user-img" src="{{post.picuser.image.url}}" />
+                    <h3>{{post.author | title}}</h3>
+                </div>  
+            </a>
+                    
+        </div>
+        {% endfor %}
+     </div>
+  
+{% endblock content %}

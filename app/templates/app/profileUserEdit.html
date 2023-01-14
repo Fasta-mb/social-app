@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <section class="container-fluids d-flex justify-content-center">
+        <div class="post container-register">
+            {% comment %} <img src="{% static 'auths/images/Logo.png' %}" alt="Logo" /> {% endcomment %}
+           
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="">{{profile.image.label}}</label>
+                {{profile.image}}
+    
+                <label for="">{{profile.title.label}}</label>
+                {{profile.title}}
+    
+                <label for="">{{profile.description.label}}</label>
+                {{profile.description}}
+    
+                <button type="submit" class="btn btn-outline-danger">Submit</button>
+    
+            </form>
+           
+        </div>
+    
+    </section>
+{% endblock content %}
